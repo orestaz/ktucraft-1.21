@@ -1,0 +1,9 @@
+{
+  "replace": false,
+  "values": [
+    "ktucraft:pink_garnet_block",
+    "ktucraft:raw_pink_garnet_block",
+    "ktucraft:pink_garnet_ore",
+    "ktucraft:pink_garnet_deepslate_ore"
+  ]
+}
