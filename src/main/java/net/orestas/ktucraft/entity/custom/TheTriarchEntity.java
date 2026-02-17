@@ -19,16 +19,13 @@ import net.minecraft.entity.mob.MobEntity;
 import net.minecraft.entity.mob.WardenEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.nbt.NbtCompound;
+import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.text.Text;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
 
 public class TheTriarchEntity extends HostileEntity {
-    private final ServerBossBar bossBar = (ServerBossBar)new ServerBossBar(this.getDisplayName(), BossBar.Color.PURPLE, BossBar.Style.PROGRESS).setDarkenSky(true);
-    private static final TrackedData<Integer> INVUL_TIMER = DataTracker.registerData(TheTriarchEntity.class, TrackedDataHandlerRegistry.INTEGER);
-    private static final TrackedData<Integer> TRACKED_ENTITY_ID_1 = DataTracker.registerData(TheTriarchEntity.class, TrackedDataHandlerRegistry.INTEGER);
-    private static final TrackedData<Integer> TRACKED_ENTITY_ID_2 = DataTracker.registerData(TheTriarchEntity.class, TrackedDataHandlerRegistry.INTEGER);
-    private static final TrackedData<Integer> TRACKED_ENTITY_ID_3 = DataTracker.registerData(TheTriarchEntity.class, TrackedDataHandlerRegistry.INTEGER);
+    private final ServerBossBar bossBar = (ServerBossBar)new ServerBossBar(this.getDisplayName(), BossBar.Color.RED, BossBar.Style.PROGRESS).setDarkenSky(true);
     public final AnimationState idleAnimationState = new AnimationState();
 
     private int idleAnimationTimeout = 0;
@@ -62,33 +59,21 @@ public class TheTriarchEntity extends HostileEntity {
     }
 
     @Override
-    protected void initDataTracker(DataTracker.Builder builder) {
-        super.initDataTracker(builder);
-        builder.add(TRACKED_ENTITY_ID_1, 0);
-        builder.add(TRACKED_ENTITY_ID_2, 0);
-        builder.add(TRACKED_ENTITY_ID_3, 0);
-        builder.add(INVUL_TIMER, 0);
-    }
-
-    @Override
-    public void writeCustomDataToNbt(NbtCompound nbt) {
-        super.writeCustomDataToNbt(nbt);
-        nbt.putInt("Invul", this.getInvulnerableTimer());
-    }
-
-    @Override
-    public void readCustomDataFromNbt(NbtCompound nbt) {
-        super.readCustomDataFromNbt(nbt);
-        this.setInvulTimer(nbt.getInt("Invul"));
-        if (this.hasCustomName()) {
-            this.bossBar.setName(this.getDisplayName());
-        }
-    }
-
-    @Override
     public void setCustomName(@Nullable Text name) {
         super.setCustomName(name);
         this.bossBar.setName(this.getDisplayName());
+    }
+
+    @Override
+    public void onStartedTrackingBy(ServerPlayerEntity player) {
+        super.onStartedTrackingBy(player);
+        this.bossBar.addPlayer(player);
+    }
+
+    @Override
+    public void onStoppedTrackingBy(ServerPlayerEntity player) {
+        super.onStoppedTrackingBy(player);
+        this.bossBar.removePlayer(player);
     }
 
     public static DefaultAttributeContainer.Builder createAttributes() {
@@ -102,14 +87,6 @@ public class TheTriarchEntity extends HostileEntity {
                 .add(EntityAttributes.GENERIC_ATTACK_SPEED, 1.5F);
     }
 
-    public void setInvulTimer(int ticks) {
-        this.dataTracker.set(INVUL_TIMER, ticks);
-    }
-
-    public int getInvulnerableTimer() {
-        return this.dataTracker.get(INVUL_TIMER);
-    }
-
     private void setupAnimationStates() {
         if (this.idleAnimationTimeout <= 0) {
             this.idleAnimationTimeout = 30;
@@ -118,7 +95,11 @@ public class TheTriarchEntity extends HostileEntity {
             --this.idleAnimationTimeout;
         }
     }
-
+    @Override
+    protected void mobTick() {
+        super.mobTick();
+        this.bossBar.setPercent(this.getHealth() / this.getMaxHealth());
+    }
     @Override
     public void tick() {
         super.tick();
