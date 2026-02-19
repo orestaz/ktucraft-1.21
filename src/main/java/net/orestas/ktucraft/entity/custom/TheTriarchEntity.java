@@ -21,11 +21,16 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.text.Text;
+import net.minecraft.util.Formatting;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
 
 public class TheTriarchEntity extends HostileEntity {
-    private final ServerBossBar bossBar = (ServerBossBar)new ServerBossBar(this.getDisplayName(), BossBar.Color.RED, BossBar.Style.PROGRESS).setDarkenSky(true);
+    private final ServerBossBar bossBar = (ServerBossBar)new ServerBossBar(
+            Text.literal("The Triarch").formatted(Formatting.LIGHT_PURPLE),
+            BossBar.Color.RED,
+            BossBar.Style.PROGRESS
+    ).setDarkenSky(true);
     public final AnimationState idleAnimationState = new AnimationState();
 
     private int idleAnimationTimeout = 0;
@@ -44,6 +49,11 @@ public class TheTriarchEntity extends HostileEntity {
         birdNavigation.setCanSwim(true);
         birdNavigation.setCanEnterOpenDoors(true);
         return birdNavigation;
+    }
+
+    @Override
+    public boolean handleFallDamage(float fallDistance, float damageMultiplier, net.minecraft.entity.damage.DamageSource damageSource) {
+        return false; // no fall damage
     }
 
     @Override
