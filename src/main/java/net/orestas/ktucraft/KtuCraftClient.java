@@ -1,6 +1,7 @@
 package net.orestas.ktucraft;
 
 import net.fabricmc.api.ClientModInitializer;
+import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
 import net.fabricmc.fabric.api.client.particle.v1.ParticleFactoryRegistry;
 import net.fabricmc.fabric.api.client.rendering.v1.EntityModelLayerRegistry;
 import net.fabricmc.fabric.api.client.rendering.v1.EntityRendererRegistry;
@@ -11,6 +12,7 @@ import net.orestas.ktucraft.entity.client.TheTriarchRenderer;
 import net.orestas.ktucraft.entity.client.TheTriarchStarModel;
 import net.orestas.ktucraft.entity.client.TheTriarchStarRenderer;
 import net.orestas.ktucraft.network.packet.TriarchMusicClient;
+import net.orestas.ktucraft.client.TriarchScreenShake;
 import net.orestas.ktucraft.particle.ModParticles;
 
 public class KtuCraftClient implements ClientModInitializer {
@@ -27,5 +29,7 @@ public class KtuCraftClient implements ClientModInitializer {
         );
         TriarchMusicClient.initReceivers();
 
+        ClientTickEvents.END_CLIENT_TICK.register(client -> TriarchScreenShake.clientTick());
+        ClientTickEvents.END_CLIENT_TICK.register(TriarchMusicClient::tick);
     }
 }

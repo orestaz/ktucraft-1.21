@@ -24,6 +24,7 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.projectile.DragonFireballEntity;
 import net.minecraft.entity.projectile.ProjectileEntity;
 import net.minecraft.entity.projectile.WitherSkullEntity;
+import net.minecraft.item.ItemStack;
 import net.minecraft.particle.ParticleTypes;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.server.world.ServerWorld;
@@ -37,6 +38,7 @@ import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.Heightmap;
 import net.minecraft.world.World;
+import net.orestas.ktucraft.item.ModItems;
 import net.orestas.ktucraft.network.packet.ModPackets;
 import net.orestas.ktucraft.particle.ModParticles;
 import org.jetbrains.annotations.Nullable;
@@ -220,6 +222,7 @@ public class TheTriarchEntity extends HostileEntity {
             if (attacker instanceof ServerPlayerEntity sp) {
                 grantAdv(sp, ADV_KILL_TRIARCH);
             }
+            this.dropStack(new ItemStack(ModItems.TRINITY_SWORD));
         }
     }
 
@@ -649,7 +652,11 @@ public class TheTriarchEntity extends HostileEntity {
             sw.spawnParticles(ModParticles.THE_TRIARCH_SONIC_BOOM, p.x, p.y, p.z, 1, 0, 0, 0, 0);
         }
         playBossSound(SoundEvents.ENTITY_WARDEN_SONIC_BOOM, 2.5f, 0.95f);
-
+        // screen shake visiems, kurie mato bossbar (t.y. boss fight)
+        float shake = 6.0f;
+        for (ServerPlayerEntity p : this.bossBar.getPlayers()) {
+            ModPackets.sendShake(p, this.getX(), this.getY(), this.getZ(), shake);
+        }
         DamageSource src = this.getDamageSources().sonicBoom(this);
         target.damage(src, damage);
 

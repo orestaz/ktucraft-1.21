@@ -1,0 +1,26 @@
+{
+  "parent": "minecraft:adventure/root",
+  "criteria": {
+    "triggered": {
+      "trigger": "minecraft:impossible"
+    }
+  },
+  "display": {
+    "description": "Defeat the final fusion of three gods.",
+    "frame": "challenge",
+    "icon": {
+      "count": 1,
+      "id": "minecraft:nether_star"
+    },
+    "title": "The Triarch"
+  },
+  "requirements": [
+    [
+      "triggered"
+    ]
+  ],
+  "rewards": {
+    "experience": 500
+  },
+  "sends_telemetry_event": true
+}

@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "ktucraft:item/seed_of_the_fusion"
+  }
+}

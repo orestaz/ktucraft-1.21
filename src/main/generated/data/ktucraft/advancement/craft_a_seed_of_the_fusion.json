@@ -1,0 +1,33 @@
+{
+  "parent": "minecraft:adventure/root",
+  "criteria": {
+    "has_seed": {
+      "conditions": {
+        "items": [
+          {
+            "items": "ktucraft:seed_of_the_fusion"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "description": "Craft a Seed of The Fusion",
+    "frame": "challenge",
+    "icon": {
+      "count": 1,
+      "id": "ktucraft:seed_of_the_fusion"
+    },
+    "title": "Planting Chaos"
+  },
+  "requirements": [
+    [
+      "has_seed"
+    ]
+  ],
+  "rewards": {
+    "experience": 150
+  },
+  "sends_telemetry_event": true
+}
