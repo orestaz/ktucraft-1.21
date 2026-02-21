@@ -23,8 +23,8 @@ public class ModModelProvider extends FabricModelProvider {
 
     @Override
     public void generateItemModels(ItemModelGenerator itemModelGenerator) {
-        itemModelGenerator.register(ModItems.PINK_GARNET, Models.GENERATED);
-        itemModelGenerator.register(ModItems.RAW_PINK_GARNET, Models.GENERATED);
+        itemModelGenerator.register(ModItems.WARDENS_HEART, Models.GENERATED);
+        itemModelGenerator.register(ModItems.SEED_OF_THE_FUSION, Models.GENERATED);
         itemModelGenerator.register(ModItems.THE_TRIARCH_SPAWN_EGG,
                 new Model(Optional.of(Identifier.of("item/template_spawn_egg")), Optional.empty()));
     }

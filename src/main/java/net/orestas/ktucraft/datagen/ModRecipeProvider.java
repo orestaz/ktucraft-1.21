@@ -4,6 +4,7 @@ import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricRecipeProvider;
 import net.minecraft.data.server.recipe.RecipeExporter;
 import net.minecraft.data.server.recipe.ShapedRecipeJsonBuilder;
+import net.minecraft.item.Items;
 import net.minecraft.recipe.book.RecipeCategory;
 import net.minecraft.registry.RegistryWrapper;
 import net.orestas.ktucraft.block.ModBlocks;
@@ -19,12 +20,14 @@ public class ModRecipeProvider extends FabricRecipeProvider {
 
     @Override
     public void generate(RecipeExporter recipeExporter) {
-        ShapedRecipeJsonBuilder.create(RecipeCategory.MISC, ModBlocks.RAW_PINK_GARNET_BLOCK, 5)
-                .pattern(" RR")
+        ShapedRecipeJsonBuilder.create(RecipeCategory.MISC, ModItems.SEED_OF_THE_FUSION, 1)
                 .pattern("RRR")
-                .pattern("RRR")
-                .input('R', ModItems.RAW_PINK_GARNET)
-                .criterion(hasItem(ModItems.RAW_PINK_GARNET), conditionsFromItem(ModItems.RAW_PINK_GARNET))
+                .pattern(" H ")
+                .pattern(" S ")
+                .input('R', Items.DRAGON_HEAD)
+                .input('H', ModItems.WARDENS_HEART)
+                .input('S', Items.NETHER_STAR)
+                .criterion(hasItem(ModItems.WARDENS_HEART), conditionsFromItem(ModItems.WARDENS_HEART))
                 .offerTo(recipeExporter);
     }
 }

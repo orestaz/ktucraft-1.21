@@ -12,8 +12,6 @@ import net.minecraft.loot.provider.number.UniformLootNumberProvider;
 import net.minecraft.util.Identifier;
 
 public class ModLootTableModifiers {
-    private static final Identifier GRASS_BLOCK_ID
-            = Identifier.of("minecraft", "blocks/short_grass");
     private static final Identifier WARDEN_ID
             = Identifier.of("minecraft", "entities/warden");
 
@@ -22,9 +20,7 @@ public class ModLootTableModifiers {
             if(WARDEN_ID.equals(key.getValue())) {
                 LootPool.Builder poolBuilder = LootPool.builder()
                         .rolls(ConstantLootNumberProvider.create(1))
-                        .with(ItemEntry.builder(ModItems.RAW_PINK_GARNET));
-
-
+                        .with(ItemEntry.builder(ModItems.WARDENS_HEART));
                 tableBuilder.pool(poolBuilder.build());
             }
         });

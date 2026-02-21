@@ -13,11 +13,9 @@ import net.minecraft.util.Identifier;
 public class ModItemGroups {
     public static final ItemGroup PINK_GARNET_ITEMS_GROUP = Registry.register(Registries.ITEM_GROUP,
             Identifier.of(KTUCRAFT.MOD_ID, "pink_garnet_items"),
-            FabricItemGroup.builder().icon(() -> new ItemStack(ModItems.PINK_GARNET))
+            FabricItemGroup.builder().icon(() -> new ItemStack(ModItems.WARDENS_HEART))
                     .displayName(Text.translatable("itemgroup.ktucraft.pink_garnet_items"))
                     .entries((displayContext, entries) -> {
-                        entries.add(ModItems.PINK_GARNET);
-                        entries.add(ModItems.RAW_PINK_GARNET);
                         entries.add(ModItems.THE_TRIARCH_SPAWN_EGG);
                     }).build());
 

@@ -1,0 +1,8 @@
+{
+  "the_triarch_boss_music": {
+    "category": "music",
+    "sounds": [
+      { "name": "ktucraft:music/the_triarch_boss", "stream": true }
+    ]
+  }
+}

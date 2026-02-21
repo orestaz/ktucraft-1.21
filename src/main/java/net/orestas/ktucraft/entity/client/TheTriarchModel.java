@@ -98,6 +98,11 @@ public class TheTriarchModel<T extends TheTriarchEntity> extends SinglePartEntit
 
         this.animateMovement(TheTriarchAnimations.ANIM_THE_TRIARCH_WALK, limbSwing, limbSwingAmount, 2f, 2.5f);
         this.updateAnimation(entity.idleAnimationState, TheTriarchAnimations.ANIM_THE_TRIARCH_IDLE, ageInTicks, 1f);
+
+        // ✅ ČIA "nurodai" atakų animacijų pavadinimus:
+        this.updateAnimation(entity.attackLeftAnimationState,  TheTriarchAnimations.ANIM_THE_TRIARCH_ATTACK_LEFT_HEAD, ageInTicks, 1f);
+        this.updateAnimation(entity.attackRightAnimationState, TheTriarchAnimations.ANIM_THE_TRIARCH_ATTACK_RIGHT_HEAD, ageInTicks, 1f);
+        this.updateAnimation(entity.attackMidAnimationState,   TheTriarchAnimations.ANIM_THE_TRIARCH_ATTACK_MIDDLE_HEAD, ageInTicks, 1f);
     }
     @Override
     public void render(MatrixStack matrices, VertexConsumer vertexConsumer, int light, int overlay, int color) {

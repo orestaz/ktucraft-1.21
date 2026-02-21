@@ -1,7 +1,7 @@
 {
-  "item.ktucraft.pink_garnet": "Pink Garnet",
-  "item.ktucraft.raw_pink_garnet": "Raw Pink Garnet",
+  "item.ktucraft.wardens_heart": "Warden's Heart",
   "item.ktucraft.the_triarch_spawn_egg": "The Triarch Spawn Egg",
+  "item.ktucraft.seed_of_the_fusion": "Seed Of The Fusion",
 
   "block.ktucraft.pink_garnet_block": "Block of Pink Garnet",
   "block.ktucraft.raw_pink_garnet_block": "Block of Raw Pink Garnet",
@@ -11,5 +11,6 @@
   "itemgroup.ktucraft.pink_garnet_items": "Pink Garnet Items",
   "itemgroup.ktucraft.pink_garnet_blocks": "Pink Garnet Blocks",
 
-  "entity.ktucraft.the_triarch": "The Triarch"
+  "entity.ktucraft.the_triarch": "The Triarch",
+  "entity.ktucraft.the_triarch_star": "The Triarch Star"
 }

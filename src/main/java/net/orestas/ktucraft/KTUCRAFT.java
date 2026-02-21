@@ -5,9 +5,12 @@ import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.object.builder.v1.entity.FabricDefaultAttributeRegistry;
 import net.orestas.ktucraft.block.ModBlocks;
 import net.orestas.ktucraft.entity.ModEntities;
+import net.orestas.ktucraft.network.packet.ModPackets;
+import net.orestas.ktucraft.particle.ModParticles;
 import net.orestas.ktucraft.entity.custom.TheTriarchEntity;
 import net.orestas.ktucraft.item.ModItemGroups;
 import net.orestas.ktucraft.item.ModItems;
+import net.orestas.ktucraft.sound.ModSounds;
 import net.orestas.ktucraft.util.ModLootTableModifiers;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -24,5 +27,9 @@ public class KTUCRAFT implements ModInitializer {
         ModLootTableModifiers.modifyLootTables();
         ModEntities.registerModEntities();
         FabricDefaultAttributeRegistry.register(ModEntities.THE_TRIARCH, TheTriarchEntity.createAttributes());
+        ModParticles.register();
+        ModSounds.register();
+        ModPackets.registerPayloads();
+
 	}
 }
